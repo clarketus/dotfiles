@@ -1,0 +1,6 @@
+--type-add=ruby=.haml,.rake,.rsel,.sass,.less,.liquid,.scss,.jsp,.ftl,.coffee
+
+--type-set=css=.css
+--type-set=js=.js
+--nocss
+--nojs

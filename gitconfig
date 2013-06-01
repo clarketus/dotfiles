@@ -1,0 +1,72 @@
+[include]
+    path=~/.gitconfig-local
+[branch "master"]
+  # mergeoptions = --ff-only
+  rebase = true
+[branch]
+  rebase = true
+[user]
+  email = ollie@clarketus.net
+  name = Oliver Clarke
+[apply]
+  whitespace = fix
+[rerere]
+  autoupdated = true
+  enabled = true
+[diff "localizablestrings"]
+  textconv = "iconv -f utf-16 -t utf-8"
+[push]
+   default = current
+[core]
+  whitespace = trailing-space,space-before-tab,-indent-with-non-tab,-cr-at-eol
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[log]
+  decorate = full
+
+[alias]
+  # I like using the interactive mode to make complex commits
+  ai = add --interactive
+
+  # All the aliases relate to commits. Note that
+  # they are grouped by common prefixes, so I don't
+  # confuse what I want done by accident.
+  c = commit
+  # commit with a message
+  cm = commit -m
+  cma = commit -a -m
+  # amending the previous commit
+  ca = commit --amend
+  caa = commit -a --amend -C HEAD
+
+  # reset
+  ## soft resets
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  ## hard resets
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh1 = reset HEAD^^ --hard
+
+  # shortcuts for commands
+  s = status
+  d = diff
+  a = add
+  co = checkout
+  b = branch
+  l = log
+  f = fetch
+  r = reset
+  p = push
+  cp = cherry-pick
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+

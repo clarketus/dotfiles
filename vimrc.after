@@ -1,0 +1,93 @@
+" Nerdtree Tabs
+" =============================
+
+map <F5> :NERDTreeTabsToggle<CR> " toggle key set
+let g:NERDTreeWinSize = 40 " Set width of column
+let NERDTreeShowHidden = 1
+
+let g:nerdtree_tabs_open_on_gui_startup = 1
+let g:nerdtree_tabs_open_on_console_startup = 0
+let g:nerdtree_tabs_smart_startup_focus = 1
+let g:nerdtree_tabs_open_on_new_tab = 1
+let g:nerdtree_tabs_meaningful_tab_names = 1
+let g:nerdtree_tabs_autoclose = 1
+let g:nerdtree_tabs_synchronize_view = 1
+let g:nerdtree_tabs_focus_on_files = 0
+
+" Whitespace removal
+" ==============================
+
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" Shift select
+" ==============================
+" if has("gui_macvim")
+"     let macvim_hig_shift_movement = 1
+" endif
+
+" Omnicomplete
+" ================================
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_include_object = 1
+autocmd FileType ruby,eruby let g:rubycomplete_include_objectspace = 1
+
+" map CTRL-E to end-of-line
+" =========================================
+imap <C-e> <esc>$i<right>
+map <C-e> $
+
+" map CTRL-A to beginning-of-line
+" =========================================
+imap <C-a> <esc>0i
+map <C-a> 0
+
+" map \\ to comment toggle for selection
+" =========================================
+nmap \\ <Plug>NERDCommenterInvert
+xmap \\ <Plug>NERDCommenterInvert
+
+" Color Line
+" ========================================
+if exists('+colorcolumn')
+ set colorcolumn=125
+ hi ColorColumn guibg=#300000 ctermbg=52
+else
+ au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+" Enable mouse in console vim
+" ========================================
+set mouse=a
+set ttymouse=xterm2
+set ttyfast
+
+" System clipboard interaction using CTRL-x/c/v
+" NOTE: requires the pbcopy plugin to be manually intalled
+" ========================================
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
+map <C-v> :r !pbpaste<CR>
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
