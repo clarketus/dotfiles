@@ -26,7 +26,7 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 fi
 
-if [[`uname` == 'Linux']]; then
+if [[ `uname` == 'Linux' ]]; then
   # default to the physical display
   export DISPLAY=:0
 
