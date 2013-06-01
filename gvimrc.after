@@ -1,8 +1,8 @@
 " Turn on line numbers
 set number
 
-" Change colorscheme, 'slate' was the old one
-" For some weird fucking reason Moria only works after a theme has been initially set
+" Change colorscheme
+" For some weird reason Moria does not work unless you already specify a theme
 colorscheme slate
 colorscheme Moria
 
@@ -16,7 +16,13 @@ set showtabline=2
 set guioptions-=T
 
 " Sets the font and size
-set guifont=Inconsolata:h20
+set guifont=Inconsolata:h14
 
 " Sets the percent transparency
 " set transparency=10
+
+" Control P to Command P
+" =================================
+macmenu &File.Print key=<nop>
+nmap <D-p> <C-p>w
+
