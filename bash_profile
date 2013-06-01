@@ -38,7 +38,9 @@ fi
 # TMUX
 if [[ -e `which tmux` ]]; then
   if [[ -n `ps aux | grep tmux | grep -v grep` ]]; then
-    tmux attach
+    if [[ -z "$TMUX" ]]; then
+      tmux attach
+    fi
   fi
 fi
 
