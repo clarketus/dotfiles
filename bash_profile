@@ -1,5 +1,5 @@
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-source /Users/clarketus/.bash_prompt
+source $HOME/.bash_prompt
 
 export EDITOR='vim -f'
 export BUNDLER_EDITOR='vim -f'
@@ -41,4 +41,6 @@ if [[ -e `which tmux` ]]; then
     tmux attach
   fi
 fi
+
+source $HOME/.bash_profile_local
 
