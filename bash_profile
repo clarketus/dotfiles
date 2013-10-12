@@ -24,6 +24,9 @@ if [[ `uname` == 'Darwin' ]]; then
     . `brew --prefix`/etc/bash_completion
     complete -o default -F _git g
   fi
+
+  # needed for homebrew installed python packages
+  export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 fi
 
 if [[ `uname` == 'Linux' ]]; then
