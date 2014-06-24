@@ -11,8 +11,6 @@ alias g="git"
 alias fbtunnel="ssh -v -o TCPKeepAlive=yes -o ServerAliveInterval=10 -o ServerAliveCountMax=2 -CNR cartman.node.wfhack.com:9999:127.0.0.1:9999 wildfire@cartman.node.wfhack.com"
 alias fbtunnel_clarketus="ssh -v -o TCPKeepAlive=yes -o ServerAliveInterval=10 -o ServerAliveCountMax=2 -CNR tunnel.clarketus.com:9999:127.0.0.1:9999 deploy@tunnel.clarketus.com"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # OSX specific
 if [[ `uname` == 'Darwin' ]]; then
   PATH=/usr/local/sbin:/usr/local/bin:$PATH # Add sbin for homebrew
@@ -37,6 +35,8 @@ if [[ `uname` == 'Linux' ]]; then
     ps aux | grep X | ruby -ne 'm = $_.split(/\s+/)[10..-1].join(" ").match(/:\d+/); puts m if m'
   }
 fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # TMUX
 if [[ -e `which tmux` ]]; then
