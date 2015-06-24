@@ -51,13 +51,13 @@ function parse_git_branch {
 
 function prompt_func() {
     previous_return_value=$?;
-    prompt="${TITLEBAR}${BLUE}\w${LIGHT_RED} $(ruby_version)${GREEN} $(parse_git_branch)${COLOR_NONE} "
-    if test $previous_return_value -eq 0
-    then
-        PS1="${prompt}\$ "
-    else
-        PS1="${prompt}${RED}\$${COLOR_NONE} "
-    fi
+    prompt="${TITLEBAR}${BLUE}\w${GREEN} $(parse_git_branch)${COLOR_NONE} "
+    # if test $previous_return_value -eq 0
+    # then
+    #     PS1="${prompt}\$ "
+    # else
+        PS1="${prompt}${YELLOW}\$${COLOR_NONE} "
+    # fi
 }
 
 PROMPT_COMMAND=prompt_func

@@ -2,7 +2,7 @@
 " =============================
 
 map <F5> :NERDTreeTabsToggle<CR> " toggle key set
-let g:NERDTreeWinSize = 40 " Set width of column
+let g:NERDTreeWinSize = 60 " Set width of column
 let NERDTreeShowHidden = 1
 
 let g:nerdtree_tabs_open_on_gui_startup = 1
@@ -64,7 +64,7 @@ xmap \\ <Plug>NERDCommenterInvert
 " Color Line
 " ========================================
 if exists('+colorcolumn')
- set colorcolumn=125
+ set colorcolumn=100
  hi ColorColumn guibg=#300000 ctermbg=52
 else
  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -91,3 +91,4 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
 endif
 
+let g:ctrlp_working_path_mode = 0

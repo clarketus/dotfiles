@@ -11,6 +11,8 @@ alias g="git"
 alias fbtunnel="ssh -v -o TCPKeepAlive=yes -o ServerAliveInterval=10 -o ServerAliveCountMax=2 -CNR cartman.node.wfhack.com:9999:127.0.0.1:9999 wildfire@cartman.node.wfhack.com"
 alias fbtunnel_clarketus="ssh -v -o TCPKeepAlive=yes -o ServerAliveInterval=10 -o ServerAliveCountMax=2 -CNR tunnel.clarketus.com:9999:127.0.0.1:9999 deploy@tunnel.clarketus.com"
 
+source $HOME/.bash_profile_local
+
 # OSX specific
 if [[ `uname` == 'Darwin' ]]; then
   PATH=/usr/local/sbin:/usr/local/bin:$PATH # Add sbin for homebrew
@@ -46,6 +48,4 @@ if [[ -e `which tmux` ]]; then
     fi
   fi
 fi
-
-source $HOME/.bash_profile_local
 
