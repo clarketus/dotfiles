@@ -5,9 +5,6 @@
   rebase = true
 [branch]
   rebase = true
-[user]
-  email = ollie@clarketus.net
-  name = Oliver Clarke
 [apply]
   whitespace = fix
 [rerere]
