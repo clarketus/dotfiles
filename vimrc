@@ -2,6 +2,7 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+set noswapfile
 
 " Nerdtree
 let g:NERDTreeWinSize = 60 " Set width of column
