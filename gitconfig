@@ -13,9 +13,10 @@
 [diff "localizablestrings"]
   textconv = "iconv -f utf-16 -t utf-8"
 [push]
-   default = current
+  default = current
 [core]
   whitespace = trailing-space,space-before-tab,-indent-with-non-tab,-cr-at-eol
+	pager = less -x3
 [color]
   branch = auto
   diff = auto
