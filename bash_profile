@@ -1,8 +1,11 @@
+GOPATH=$(go env GOPATH)
+PATH=$PATH:$GOPATH/bin
+PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 source $HOME/.bash_prompt
 
-export EDITOR='vim -f'
-export BUNDLER_EDITOR='vim -f'
+export EDITOR='vim'
+export BUNDLER_EDITOR='vim'
 
 alias be="bundle exec"
 alias g="git"
@@ -45,3 +48,9 @@ if [[ -e `which tmux` ]]; then
   fi
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/clarketus/google-cloud-sdk/path.bash.inc' ]; then source '/Users/clarketus/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/clarketus/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/clarketus/google-cloud-sdk/completion.bash.inc'; fi
