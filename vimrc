@@ -5,7 +5,7 @@ filetype plugin indent on
 set noswapfile
 
 " Nerdtree
-let g:NERDTreeWinSize = 60 " Set width of column
+let g:NERDTreeWinSize = 45 " Set width of column
 let NERDTreeShowHidden = 1
 
 " Nerdtree Tabs
@@ -84,13 +84,38 @@ set expandtab       " Expand TABs to spaces"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value"]
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value", "is invalid", "escaping malformed URI reference", "plain text isn't allowed in <head> elements", "lacks \"alt\" attribute"]
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_enable_highlighting = 1
 
 " Colorscheme. Also requires iterm to have the right colors set
 colorscheme sourcerer " http://sourcerer.xero.nu/
+" colorscheme apprentice " https://github.com/romainl/Apprentice
 
+set termguicolors
+
+" go settings
+let g:go_fmt_command = "goimports"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+
+" Open go doc in vertical window, horizontal, or tab
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
+" fix for syntastic error highlighting
+hi! link QuickFixLine Search
