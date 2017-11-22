@@ -16,7 +16,7 @@
   default = current
 [core]
   whitespace = trailing-space,space-before-tab,-indent-with-non-tab,-cr-at-eol
-	pager = less -x3
+	pager = less -x2
 [color]
   branch = auto
   diff = auto
