@@ -37,8 +37,6 @@ if [[ `uname` == 'Linux' ]]; then
   }
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # TMUX
 if [[ -e `which tmux` ]]; then
   if [[ -n `ps aux | grep tmux | grep -v grep` ]]; then
@@ -54,3 +52,5 @@ if [ -f '/Users/clarketus/google-cloud-sdk/path.bash.inc' ]; then source '/Users
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/clarketus/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/clarketus/google-cloud-sdk/completion.bash.inc'; fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
