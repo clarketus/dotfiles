@@ -63,6 +63,7 @@ endif
 " tsuquyomi (typescript)
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+let g:tsuquyomi_use_vimproc = 1 " this is an attempt to fix a random freeze when editing typescript
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
@@ -72,6 +73,7 @@ set omnifunc=syntaxcomplete#Complete
 set number
 
 " indenting
+filetype plugin indent on
 set tabstop=2       " The width of a TAB is set to 2.
                     " Still it is a \t. It is just that
                     " Vim will interpret it to be having
@@ -89,15 +91,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value", "is invalid", "escaping malformed URI reference", "plain text isn't allowed in <head> elements", "lacks \"alt\" attribute"]
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value", "is invalid", "escaping malformed URI reference", "plain text isn't allowed in <head> elements", "lacks \"alt\" attribute", "<a> illegal characters found in URI"]
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_enable_highlighting = 1
 
 " Colorscheme. Also requires iterm to have the right colors set
 colorscheme sourcerer " http://sourcerer.xero.nu/
 " colorscheme apprentice " https://github.com/romainl/Apprentice
-
-set termguicolors
 
 " go settings
 let g:go_fmt_command = "goimports"
@@ -110,7 +110,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
