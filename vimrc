@@ -21,6 +21,8 @@ let g:nerdtree_tabs_focus_on_files = 0
 
 " vim-trailing-whitespace auto trigger on save
 autocmd BufWritePre * :FixWhitespace
+" convert tabs to spaces on save
+autocmd BufWritePre * :retab
 
 " map CTRL-E to end-of-line
 imap <C-e> <esc>$i<right>
