@@ -1,4 +1,4 @@
-GOPATH=$(go env GOPATH)
+export GOPATH=$(go env GOPATH)
 PATH=$PATH:$GOPATH/bin
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
