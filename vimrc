@@ -88,6 +88,10 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 
+Plugin 'wincent/command-t'
+let g:CommandTMaxFiles=200000
+nmap <silent> <C-t> <Plug>(CommandT)
+
 Plugin 'fatih/vim-go' " golang support along with on-save formatting.
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
