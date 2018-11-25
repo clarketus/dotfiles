@@ -131,8 +131,8 @@ let g:syntastic_auto_loc_list = 0 " auto open the error list
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value", "is invalid", "escaping malformed URI reference", "plain text isn't allowed in <head> elements", "lacks \"alt\" attribute", "<a> illegal characters found in URI"]
 hi! link QuickFixLine Search " fix for syntastic error highlighting
+let g:syntastic_html_checkers = [] " disable this due to being too strict
 let g:syntastic_go_checkers = ['go']
 let g:syntastic_ruby_checkers = ['mri'] " TODO: this checker is pretty basic. is not app aware
 let g:syntastic_javascript_checkers = ['eslint']
