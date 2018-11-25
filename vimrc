@@ -3,7 +3,7 @@ set noswapfile
 
 " Vundle plugin manager
 set nocompatible " be iMproved, required for vundle
-filetype off " required for vundle
+filetype off " required for vundle setup
 set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
 call vundle#begin()
 
@@ -92,6 +92,7 @@ let g:NERDCommentEmptyLines = 1
 
 Plugin 'wincent/command-t' " open file based on name search
 let g:CommandTMaxFiles=200000
+" Map Ctrl-T to open filesearch
 nmap <silent> <C-t> <Plug>(CommandT)
 
 Plugin 'fatih/vim-go' " golang support along with on-save formatting.
