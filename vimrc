@@ -88,7 +88,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 
-Plugin 'wincent/command-t'
+Plugin 'wincent/command-t' " open file based on name search
 let g:CommandTMaxFiles=200000
 nmap <silent> <C-t> <Plug>(CommandT)
 
