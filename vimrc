@@ -53,7 +53,7 @@ set expandtab       " Expand TABs to spaces"
 colorscheme sourcerer " http://sourcerer.xero.nu/
 " colorscheme apprentice " https://github.com/romainl/Apprentice
 
-set omnifunc=syntaxcomplete#Complete " set the default omnifun
+set omnifunc=syntaxcomplete#Complete " set the default omnifunc
 
 Plugin 'tpope/vim-sensible' " vim default settings
 Plugin 'tpope/vim-surround' " change surrounds
