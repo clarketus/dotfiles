@@ -112,7 +112,9 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
 
- " Provides compile checks AND autocomplete for many languages, including typescript
+" Provides compile checks AND autocomplete for many languages, including typescript
+" YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
+" Will provide autocomplete for all unsuppored languages via the omnifunc.
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
@@ -120,7 +122,7 @@ let g:ycm_always_populate_location_list = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
+" Provides compile feedback for a wide range of languages.
 Plugin 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -132,10 +134,12 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 1
 hi! link QuickFixLine Search " fix for syntastic error highlighting
+" NOTE: run :SyntasticInfo on a file to see what checkers are available and active. Some checkers
+" will only be available if a dependent binary is also installed via homebrew.
 let g:syntastic_html_checkers = [] " disable this due to being too strict
-let g:syntastic_go_checkers = ['go']
-let g:syntastic_ruby_checkers = ['mri'] " TODO: this checker is pretty basic. is not app aware
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['go'] " This is slow if go is below v1.10
+let g:syntastic_ruby_checkers = ['mri'] " This checker is pretty basic. Is not app aware.
+let g:syntastic_javascript_checkers = [] " TODO: Need to pick a checker and configure.
 
 call vundle#end() " required for vundle
 filetype plugin indent on
