@@ -24,8 +24,7 @@ if [[ `uname` == 'Darwin' ]]; then
     complete -o default -F _git g
   fi
 
-  # needed for homebrew installed python packages
-  export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+  unset PYTHONPATH # this is needed or else vim can have python version conflicts
 fi
 
 if [[ `uname` == 'Linux' ]]; then

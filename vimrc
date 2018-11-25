@@ -1,28 +1,13 @@
-" Pathogen
-execute pathogen#infect()
 syntax on
-filetype plugin indent on
 set noswapfile
 
-" Nerdtree
-let g:NERDTreeWinSize = 45 " Set width of column
-let NERDTreeShowHidden = 1
+" Vundle plugin manager
+set nocompatible " be iMproved, required for vundle
+filetype off " required for vundle
+set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
+call vundle#begin()
 
-" Nerdtree Tabs
-map <F5> :NERDTreeTabsToggle<CR> " toggle key set
-let g:nerdtree_tabs_open_on_gui_startup = 1
-let g:nerdtree_tabs_open_on_console_startup = 2
-let g:nerdtree_tabs_smart_startup_focus = 1
-let g:nerdtree_tabs_open_on_new_tab = 1
-let g:nerdtree_tabs_meaningful_tab_names = 1
-let g:nerdtree_tabs_autoclose = 1
-let g:nerdtree_tabs_synchronize_view = 1
-let g:nerdtree_tabs_focus_on_files = 0
-
-" vim-trailing-whitespace auto trigger on save
-autocmd BufWritePre * :FixWhitespace
-" convert tabs to spaces on save
-autocmd BufWritePre * :retab
+autocmd BufWritePre * :retab " convert tabs to spaces on save
 
 " map CTRL-E to end-of-line
 imap <C-e> <esc>$i<right>
@@ -32,15 +17,7 @@ map <C-e> $
 imap <C-a> <esc>0i
 map <C-a> 0
 
-" map \\ to comment toggle for selection
-nmap \\ <Plug>NERDCommenterInvert
-xmap \\ <Plug>NERDCommenterInvert
-let g:NERDSpaceDelims = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCompactSexyComs = 1
-let g:NERDCommentEmptyLines = 1
-
-" Color Line
+" Vertical color line to show file width
 if exists('+colorcolumn')
   set colorcolumn=100
   hi ColorColumn guibg=#300000 ctermbg=52
@@ -62,20 +39,8 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 endif
 
-" tsuquyomi (typescript)
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
-let g:tsuquyomi_use_vimproc = 1 " this is an attempt to fix a random freeze when editing typescript
-
-" Supertab
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-set omnifunc=syntaxcomplete#Complete
-
-" line numbers
+" line numbers and tabs
 set number
-
-" indenting
-filetype plugin indent on
 set tabstop=2       " The width of a TAB is set to 2.
                     " Still it is a \t. It is just that
                     " Vim will interpret it to be having
@@ -84,26 +49,47 @@ set shiftwidth=2    " Indents will have a width of 2
 set softtabstop=2   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces"
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value", "is invalid", "escaping malformed URI reference", "plain text isn't allowed in <head> elements", "lacks \"alt\" attribute", "<a> illegal characters found in URI"]
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_enable_highlighting = 1
-
 " Colorscheme. Also requires iterm to have the right colors set
 colorscheme sourcerer " http://sourcerer.xero.nu/
 " colorscheme apprentice " https://github.com/romainl/Apprentice
 
-" go settings
-let g:go_fmt_command = "goimports"
+set omnifunc=syntaxcomplete#Complete " set the default omnifun
 
+Plugin 'tpope/vim-sensible' " vim default settings
+Plugin 'tpope/vim-surround' " change surrounds
+
+Plugin 'tpope/vim-fugitive' " provides :Gblame
+Plugin 'airblade/vim-gitgutter' " Shows git status in the side gutter
+
+Plugin 'bronson/vim-trailing-whitespace' " remote trailing whitespace
+autocmd BufWritePre * :FixWhitespace " vim-trailing-whitespace auto trigger on save
+
+Plugin 'scrooloose/nerdtree' " File tree display
+let g:NERDTreeWinSize = 45 " Set width of column
+let NERDTreeShowHidden = 1
+
+Plugin 'jistr/vim-nerdtree-tabs' " Allow nerdtree to persist between vim tabs
+map <F5> :NERDTreeTabsToggle<CR> " toggle key set
+let g:nerdtree_tabs_open_on_gui_startup = 1
+let g:nerdtree_tabs_open_on_console_startup = 2
+let g:nerdtree_tabs_smart_startup_focus = 1
+let g:nerdtree_tabs_open_on_new_tab = 1
+let g:nerdtree_tabs_meaningful_tab_names = 1
+let g:nerdtree_tabs_autoclose = 1
+let g:nerdtree_tabs_synchronize_view = 1
+let g:nerdtree_tabs_focus_on_files = 0
+
+Plugin 'scrooloose/nerdcommenter' " language specific commenting
+" map \\ to comment toggle for selection
+nmap \\ <Plug>NERDCommenterInvert
+xmap \\ <Plug>NERDCommenterInvert
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+
+Plugin 'fatih/vim-go' " golang support along with on-save formatting.
+let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -111,13 +97,41 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
-
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-
 " Open go doc in vertical window, horizontal, or tab
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 
-" fix for syntastic error highlighting
-hi! link QuickFixLine Search
+" Other languages
+Plugin 'keith/swift.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'slim-template/vim-slim'
+
+ " Provides compile checks AND autocomplete for many languages, including typescript
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_always_populate_location_list = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
+Plugin 'vim-syntastic/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0 " auto open the error list
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty \<", "inserting implicit ", "unescaped \&" , "lacks \"action", "lacks value", "lacks \"src", "is not recognized!", "discarding unexpected", "replacing obsolete ", "has invalid value", "is invalid", "escaping malformed URI reference", "plain text isn't allowed in <head> elements", "lacks \"alt\" attribute", "<a> illegal characters found in URI"]
+hi! link QuickFixLine Search " fix for syntastic error highlighting
+let g:syntastic_go_checkers = ['go']
+let g:syntastic_ruby_checkers = ['mri'] " TODO: this checker is pretty basic. is not app aware
+let g:syntastic_javascript_checkers = ['eslint']
+
+call vundle#end() " required for vundle
+filetype plugin indent on
