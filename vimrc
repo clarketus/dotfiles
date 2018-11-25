@@ -61,7 +61,7 @@ Plugin 'tpope/vim-sensible' " vim default settings
 Plugin 'tpope/vim-surround' " change surrounds
 
 Plugin 'tpope/vim-fugitive' " provides :Gblame
-Plugin 'airblade/vim-gitgutter' " Shows git status in the side gutter
+Plugin 'mhinz/vim-signify' " Shows git and hg status in the side gutter
 
 Plugin 'bronson/vim-trailing-whitespace' " remote trailing whitespace
 autocmd BufWritePre * :FixWhitespace " vim-trailing-whitespace auto trigger on save
