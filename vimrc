@@ -1,14 +1,35 @@
-syntax on
-set noswapfile
-
-" Vundle plugin manager
 set nocompatible " be iMproved, required for vundle
 filetype off " required for vundle setup
 set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
 call vundle#begin()
 
-autocmd BufWritePre * :retab " convert tabs to spaces on save
+Plugin 'tpope/vim-sensible' " vim default settings
+Plugin 'tpope/vim-surround' " change surrounds
+Plugin 'tpope/vim-fugitive' " provides :Gblame
+Plugin 'mhinz/vim-signify' " Shows git and hg status in the side gutter
+Plugin 'bronson/vim-trailing-whitespace' " remote trailing whitespace
+Plugin 'scrooloose/nerdtree' " File tree display
+Plugin 'jistr/vim-nerdtree-tabs' " Allow nerdtree to persist between vim tabs
+Plugin 'scrooloose/nerdcommenter' " language specific commenting
+Plugin 'wincent/command-t' " open file based on name search. Requires a compile step after install.
+Plugin 'fatih/vim-go' " golang support along with on-save formatting.
+Plugin 'keith/swift.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'slim-template/vim-slim'
+Plugin 'vim-syntastic/syntastic' " Provides compile feedback for a wide range of languages.
 
+" Provides compile checks AND autocomplete for many languages, including typescript
+" YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
+" Will provide autocomplete for all unsuppored languages via the omnifunc.
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+
+call vundle#end() " required for vundle
+filetype plugin indent on
+
+syntax on
+set noswapfile
+autocmd BufWritePre * :retab " convert tabs to spaces on save
 let mapleader = '\'
 
 " map CTRL-E to end-of-line
@@ -57,20 +78,14 @@ colorscheme sourcerer " http://sourcerer.xero.nu/
 
 set omnifunc=syntaxcomplete#Complete " set the default omnifunc
 
-Plugin 'tpope/vim-sensible' " vim default settings
-Plugin 'tpope/vim-surround' " change surrounds
-
-Plugin 'tpope/vim-fugitive' " provides :Gblame
-Plugin 'mhinz/vim-signify' " Shows git and hg status in the side gutter
-
-Plugin 'bronson/vim-trailing-whitespace' " remote trailing whitespace
+" Plugin: vim-trailing-whitespace
 autocmd BufWritePre * :FixWhitespace " vim-trailing-whitespace auto trigger on save
 
-Plugin 'scrooloose/nerdtree' " File tree display
+" Plugin: nerdtree
 let g:NERDTreeWinSize = 45 " Set width of column
 let NERDTreeShowHidden = 1
 
-Plugin 'jistr/vim-nerdtree-tabs' " Allow nerdtree to persist between vim tabs
+" Plugin: vim-nerdtree-tabs
 map <F5> :NERDTreeTabsToggle<CR> " toggle key set
 let g:nerdtree_tabs_open_on_gui_startup = 1
 let g:nerdtree_tabs_open_on_console_startup = 2
@@ -81,7 +96,7 @@ let g:nerdtree_tabs_autoclose = 1
 let g:nerdtree_tabs_synchronize_view = 1
 let g:nerdtree_tabs_focus_on_files = 0
 
-Plugin 'scrooloose/nerdcommenter' " language specific commenting
+" Plugin: nerdcommenter
 " map \\ to comment toggle for selection
 nmap \\ <Plug>NERDCommenterInvert
 xmap \\ <Plug>NERDCommenterInvert
@@ -90,12 +105,12 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 
-Plugin 'wincent/command-t' " open file based on name search. Requires a compile step after install.
+" Plugin: command-t
 let g:CommandTMaxFiles=200000
 " Map Ctrl-T to open filesearch
 nmap <silent> <C-t> <Plug>(CommandT)
 
-Plugin 'fatih/vim-go' " golang support along with on-save formatting.
+" Plugin: vim-go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -110,24 +125,14 @@ au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 
-" Other languages
-Plugin 'keith/swift.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'slim-template/vim-slim'
-
-" Provides compile checks AND autocomplete for many languages, including typescript
-" YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
-" Will provide autocomplete for all unsuppored languages via the omnifunc.
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+" Plugin: youcompleteme
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_always_populate_location_list = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" Provides compile feedback for a wide range of languages.
-Plugin 'vim-syntastic/syntastic'
+" Plugin: syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -145,5 +150,3 @@ let g:syntastic_ruby_checkers = ['mri'] " This checker is pretty basic. Is not a
 let g:syntastic_javascript_checkers = [] " TODO: Need to pick a checker and configure.
 let g:syntastic_html_checkers = [] " disable this due to being too strict
 
-call vundle#end() " required for vundle
-filetype plugin indent on
