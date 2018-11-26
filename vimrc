@@ -125,6 +125,7 @@ let g:NERDCommentEmptyLines = 1
 let g:CommandTMaxFiles=200000
 " Map Ctrl-T to open filesearch
 nmap <silent> <C-t> <Plug>(CommandT)
+let g:CommandTTraverseSCM = 'pwd' " only index from the current folder downwards
 
 " Plugin: vim-go
 let g:go_fmt_command = "goimports"
