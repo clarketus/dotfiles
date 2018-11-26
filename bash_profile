@@ -1,4 +1,3 @@
-export GOPATH=$(go env GOPATH)
 PATH=$PATH:$GOPATH/bin
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
@@ -11,6 +10,8 @@ alias be="bundle exec"
 alias g="git"
 
 source $HOME/.bash_profile_local
+
+export GOPATH=$(go env GOPATH)
 
 # OSX specific
 if [[ `uname` == 'Darwin' ]]; then
