@@ -151,6 +151,10 @@ let g:ycm_max_num_candidates = 10
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_min_num_identifier_candidate_chars = 0
 let g:ycm_cache_omnifunc = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_max_diagnostics_to_display = 500
+let g:ycm_open_loclist_on_ycm_diags = 1
 
 " Plugin: syntastic
 set statusline+=%#warningmsg#
