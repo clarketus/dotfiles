@@ -16,6 +16,10 @@ source $HOME/.bash_profile_local
 if [[ `uname` == 'Darwin' ]]; then
   PATH=/usr/local/sbin:/usr/local/bin:$PATH # Add sbin for homebrew
 
+  # allow homebrew ruby to override system ruby
+  # this is needed so we can use homebrew vim
+  export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.5.0/bin/:$PATH"
+
   bind "set completion-ignore-case on"
   bind "set show-all-if-ambiguous on"
 
@@ -24,7 +28,7 @@ if [[ `uname` == 'Darwin' ]]; then
     complete -o default -F _git g
   fi
 
-  unset PYTHONPATH # this is needed or else vim can have python version conflicts
+  unset PYTHONPATH # this is needed or else homebrew vim can have python version conflicts
 fi
 
 if [[ `uname` == 'Linux' ]]; then
