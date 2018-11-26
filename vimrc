@@ -78,6 +78,22 @@ colorscheme sourcerer " http://sourcerer.xero.nu/
 
 set omnifunc=syntaxcomplete#Complete " set the default omnifunc
 
+" built into vim ruby functionality. This uses the same ruby vim is compiled against. This ruby may
+" need the application bundle installed to function correctly. Run :messages to see if there is any
+" error output regarding missing gems.
+autocmd FileType ruby compiler ruby
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+let g:rubycomplete_rails = 1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_include_object = 0
+let g:rubycomplete_include_objectspace = 0
+let s:rubycomplete_debug = 0
+let g:rubycomplete_load_gemfile = 0
+let g:rubycomplete_use_bundler = 0
+
+" Plugins ==========================
+
 " Plugin: vim-trailing-whitespace
 autocmd BufWritePre * :FixWhitespace " vim-trailing-whitespace auto trigger on save
 
@@ -149,17 +165,3 @@ let g:syntastic_go_checkers = ['go'] " This is slow if go is below v1.10
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_javascript_checkers = [] " TODO: Need to pick a checker and configure.
 let g:syntastic_html_checkers = [] " disable this due to being too strict
-
-" built into vim ruby functionality. This uses the same ruby vim is compiled against. This ruby may
-" need the application bundle installed to function correctly. Run :messages to see if there is any
-" error output regarding missing gems.
-autocmd FileType ruby compiler ruby
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-let g:rubycomplete_rails = 1
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_include_object = 0
-let g:rubycomplete_include_objectspace = 0
-let s:rubycomplete_debug = 0
-let g:rubycomplete_load_gemfile = 0
-let g:rubycomplete_use_bundler = 0
