@@ -164,7 +164,7 @@ let g:syntastic_enable_highlighting = 1
 hi! link QuickFixLine Search " fix for syntastic error highlighting
 " NOTE: run :SyntasticInfo on a file to see what checkers are available and active. Some checkers
 " will only be available if a dependent binary is also installed via homebrew.
-let g:syntastic_go_checkers = ['go'] " This is slow if go is below v1.10
+let g:syntastic_go_checkers = ['go', 'golint'] " 'go' is slow if go is below v1.10
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_javascript_checkers = [] " TODO: Need to pick a checker and configure.
 let g:syntastic_html_checkers = [] " disable this due to being too strict
