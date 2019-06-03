@@ -34,7 +34,7 @@ fi
 
 if [[ `uname` == 'Linux' ]]; then
   # default to the physical display
-  export DISPLAY=:0
+  export DISPLAY=:1.0
 
   displays () {
     ps aux | grep X | ruby -ne 'm = $_.split(/\s+/)[10..-1].join(" ").match(/:\d+/); puts m if m'
