@@ -1,6 +1,9 @@
 set nocompatible " be iMproved, required for vundle
 filetype off " required for vundle setup
 set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
+
+source ~/.vimrc_local " local overrides
+
 call vundle#begin()
 
 Plugin 'tpope/vim-sensible' " vim default settings
@@ -19,10 +22,13 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
 Plugin 'vim-syntastic/syntastic' " Provides compile feedback for a wide range of languages.
 
-" Provides compile checks AND autocomplete for many languages, including typescript
-" YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
-" Will provide autocomplete for all unsuppored languages via the omnifunc.
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+" g:ycm_is_loaded = 1 can be set in .vimrc_local if I am using a custom ycm.
+if !exists('g:ycm_is_loaded')
+  " Provides compile checks AND autocomplete for many languages, including typescript
+  " YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
+  " Will provide autocomplete for all unsuppored languages via the omnifunc.
+  Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+endif
 
 call vundle#end() " required for vundle
 filetype plugin indent on
