@@ -17,6 +17,7 @@ Plugin 'scrooloose/nerdcommenter' " language specific commenting
 Plugin 'wincent/command-t' " open file based on name search. Requires a compile step after install.
 Plugin 'fatih/vim-go' " golang support along with on-save formatting.
 Plugin 'keith/swift.vim'
+Plugin 'udalov/kotlin-vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
