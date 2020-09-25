@@ -158,6 +158,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_max_diagnostics_to_display = 500
 let g:ycm_open_loclist_on_ycm_diags = 1
 let g:ycm_auto_trigger = 0 " Use Ctrl-Space to manually trigger autocomplete rather than auto.
+let g:ycm_auto_hover = '' " New YCM feature which can cause vim to freeze.
 
 " Plugin: syntastic
 set statusline+=%#warningmsg#
