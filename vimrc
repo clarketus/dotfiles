@@ -28,7 +28,10 @@ if !exists('g:ycm_is_loaded')
   " Provides compile checks AND autocomplete for many languages, including typescript
   " YouCompleteMe does not provide compile feedback (display diagnostics) for golang or ruby. Syntastic does.
   " Will provide autocomplete for all unsuppored languages via the omnifunc.
-  Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+  "
+  " On MacOS not providing the  --system-libclang flag causes clang completion
+  " to break.
+  Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all --system-libclang' }
 endif
 
 call vundle#end() " required for vundle
