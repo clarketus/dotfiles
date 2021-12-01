@@ -34,6 +34,10 @@ export GOPATH=$(go env GOPATH)
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# enable ctrl-a/e for home/end
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
+
 # TMUX
 if [[ -e `which tmux` ]]; then
   if [[ -n `ps aux | grep tmux | grep -v grep` ]]; then
