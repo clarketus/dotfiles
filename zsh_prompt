@@ -1,0 +1,64 @@
+#load colors
+autoload colors && colors
+for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
+    eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'  #wrap colours between %{ %} to avoid weird gaps in autocomplete
+    eval BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+done
+eval RESET='%{$reset_color%}'
+
+function ruby_version {
+  input=$(rbenv version)
+
+  first_split=""
+  arr2=("${(@s/ /)input}")
+  for x in $arr2
+  do
+    first_split="$x"
+    break
+  done
+
+  if [[ ${first_split} != "system" ]]; then
+    echo "ruby $first_split"
+  fi
+}
+
+function parse_git_branch {
+  IFS=$'\n'
+  git rev-parse --git-dir &> /dev/null
+  git_status="$(git status 2> /dev/null)"
+  branch_pattern="^On branch ([^${IFS}]*)"
+  remote_pattern="Your branch is (.*) of"
+  diverge_pattern="Your branch and (.*) have diverged"
+  if [[ ! ${git_status} =~ "working tree clean" ]]; then
+    state="${RED}⚡"
+  fi
+  # add an else if or two here if you want to get more specific
+  if [[ ${git_status} =~ ${remote_pattern} ]]; then
+    if [[ ${match[1]} == "ahead" ]]; then
+      remote="${YELLOW} ≥"
+    else
+      remote="${YELLOW} ≤"
+    fi
+  fi
+  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+    remote="${RED} ≠"
+  fi
+  if [[ ${git_status} =~ ${branch_pattern} ]]; then
+    branch=${match[1]}
+    echo "(${branch})${remote}${state}"
+  fi
+}
+
+function prompt_func() {
+    prompt="${BLUE}%~${RESET}"
+    if [[ ! -z "$(ruby_version)" ]]; then
+      prompt="${prompt} ${RED}($(ruby_version))${RESET}"
+    fi
+    if [[ ! -z "$(parse_git_branch)" ]]; then
+      prompt="${prompt} ${GREEN}$(parse_git_branch)${RESET}"
+    fi
+    PROMPT="${prompt} ${YELLOW}\$${RESET} "
+}
+
+PROMPT_COMMAND=prompt_func
+precmd() { eval "$PROMPT_COMMAND" }

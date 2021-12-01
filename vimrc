@@ -6,6 +6,7 @@ source ~/.vimrc_local " local overrides
 
 call vundle#begin()
 
+Plugin 'xero/sourcerer.vim' " sourcerer theme.
 Plugin 'tpope/vim-sensible' " vim default settings
 Plugin 'tpope/vim-surround' " change surrounds
 Plugin 'tpope/vim-fugitive' " provides :Gblame
@@ -31,6 +32,8 @@ if !exists('g:ycm_is_loaded')
   "
   " On MacOS not providing the  --system-libclang flag causes clang completion
   " to break.
+  "
+  " Before installing plugin: brew install cmake python go nodejs
   Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --all --system-libclang' }
 endif
 
@@ -77,7 +80,7 @@ set number
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Colorscheme. Also requires iterm to have the right colors set
-colorscheme sourcerer " http://sourcerer.xero.nu/
+colorscheme sourcerer " https://github.com/xero/sourcerer.vim
 " colorscheme apprentice " https://github.com/romainl/Apprentice
 
 set omnifunc=syntaxcomplete#Complete " set the default omnifunc
