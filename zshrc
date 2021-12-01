@@ -44,9 +44,9 @@ if [[ -e `which tmux` ]]; then
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/clarketus/google-cloud-sdk/path.bash.inc' ]; then source '/Users/clarketus/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/Users/clarketus/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/clarketus/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/clarketus/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/clarketus/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '/Users/clarketus/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/clarketus/google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(rbenv init - zsh)"
