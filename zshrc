@@ -13,8 +13,8 @@ source $HOME/.zshrc_local
 
 # OSX specific
 if [[ `uname` == 'Darwin' ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  PATH=/opt/homebrew/sbin:/opt/homebrew/bin:$PATH # Add sbin for homebrew
+  eval "$(brew shellenv)"
+  PATH=$HOMEBREW_PREFIX/sbin:$PATH # Add sbin for homebrew
 
   unset PYTHONPATH # this is needed or else homebrew vim can have python version conflicts
 fi
